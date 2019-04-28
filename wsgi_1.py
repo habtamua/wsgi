@@ -19,13 +19,22 @@ def application(environ, start_response):
     import pprint
     pprint.pprint(environ)
 
+    # response_body = body.format(
+    #     software=environ.get('SERVER_SOFTWARE', default),
+    #     path=environ.get('PATH_INFO', default),
+    #     month=datetime.datetime.now().strftime("%B"),
+    #     date=datetime.datetime.now().strftime("%A"),
+    #     # year=datetime.datetime.now().year,
+    #     year=datetime.datetime.now().strftime("%G"),
+    #     client_ip=environ.get("REMOTE_ADDR", default)
+    # )
     response_body = body.format(
         software=environ.get('SERVER_SOFTWARE', default),
-        path="aaaa",
-        month="bbbb",
-        date="cccc",
-        year="dddd",
-        client_ip="eeee"
+        path=environ.get('PATH_INFO'),
+        month=datetime.datetime.now().strftime('%B'),
+        date=datetime.datetime.now().day,
+        year=datetime.datetime.now().year,
+        client_ip=environ.get('REMOTE_ADDR', default),
     )
     status = '200 OK'
 
